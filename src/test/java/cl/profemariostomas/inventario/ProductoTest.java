@@ -74,6 +74,13 @@ public class ProductoTest {
         instance.aumentarStock(cantidad);
         assertEquals(101, instance.getStock());
     }
+    
+    @Test
+    public void testAumentarStockError() {
+        Integer cantidad = -100;
+        Producto instance = this.productoBase;
+        assertThrows(IllegalArgumentException.class, () -> instance.aumentarStock(cantidad));
+    }
 
     @Test
     public void testRetirarStock() {
@@ -81,6 +88,20 @@ public class ProductoTest {
         Producto instance = this.productoBase;
         instance.retirarStock(cantidad);
         assertEquals(0, instance.getStock());
+    }
+    
+    @Test
+    public void testRetirarStockErrorNegativo() {
+        Integer cantidad = -1;
+        Producto instance = this.productoBase;
+        assertThrows(IllegalArgumentException.class, () -> instance.retirarStock(cantidad));
+    }
+    
+    @Test
+    public void testRetirarStockErrorMayorASaldo() {
+        Integer cantidad = 99999;
+        Producto instance = this.productoBase;
+        assertThrows(IllegalStateException.class, () -> instance.retirarStock(cantidad));
     }
 
     @Test

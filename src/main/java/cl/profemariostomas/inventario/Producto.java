@@ -58,7 +58,7 @@ public class Producto {
             );
         }
         
-        if (cantidad < this.stock){
+        if (cantidad > this.stock){
             throw new IllegalStateException(
                 "La cantidad a retirar no puede ser mayor al stock actual"
             );
